@@ -1,12 +1,28 @@
 service: aws-node-rest-api-with-dynamodb
+plugins: 
+  - serverless-offline
+  - serverless-dynamodb-local
 
 frameworkVersion: ">=1.1.0 <2.0.0"
+
+custom:
+  tableName: todos-table
+  dynamodb:
+    stages:
+      - dev
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+    migration:
+      dir: offline/migration
 
 provider:
   name: aws
   runtime: nodejs10.x
   environment:
-    DYNAMODB_TABLE: ${self:service}-${opt:stage, self:provider.stage}
+    DYNAMODB_TABLE: ${self:custom.tableName}
+    IS_OFFLINE: true
   iamRoleStatements:
     - Effect: Allow
       Action:

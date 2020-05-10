@@ -1,35 +1,25 @@
 'use strict';
 
-const AWS = require('aws-sdk'); // eslint-disable-line import/no-extraneous-dependencies
-
-const dynamoDb = new AWS.DynamoDB.DocumentClient();
+const model = require('./models/retrievalModel');
+const deleteService = require('./services/deleteService');
 
 module.exports.delete = (event, context, callback) => {
-  const params = {
-    TableName: process.env.DYNAMODB_TABLE,
-    Key: {
-      id: event.pathParameters.id,
-    },
-  };
+  const params = model.FilterById(event.pathParameters.id);
+  const status = deleteService.DeleteFromDb(params);
 
-  // delete the todo from the database
-  dynamoDb.delete(params, (error) => {
-    // handle potential errors
-    if (error) {
-      console.error(error);
-      callback(null, {
-        statusCode: error.statusCode || 501,
-        headers: { 'Content-Type': 'text/plain' },
-        body: 'Couldn\'t remove the todo item.',
-      });
-      return;
-    }
-
+  if(!status){
+    callback(null, {
+      statusCode: error.statusCode || 501,
+      headers: { 'Content-Type': 'text/plain' },
+      body: 'Couldn\'t remove the todo item.',
+    });
+  }else{
     // create a response
     const response = {
       statusCode: 200,
       body: JSON.stringify({}),
     };
     callback(null, response);
-  });
+  }
+
 };

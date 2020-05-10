@@ -1,0 +1,11 @@
+{
+    "appUrl": "http://localhost:3000",
+    "dynamoDbTableName": "todos-table",
+    "createToDo": {
+        "requestBodyData": "From Jest Integration Test"
+    },
+    "getToDo": {
+        "requestedId":"0f8e5a50-90d6-11ea-9d9f-3121415b1063",
+        "expectedText":"Learn Serverless1"
+    }
+}

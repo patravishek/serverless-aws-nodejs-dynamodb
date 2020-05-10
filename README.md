@@ -98,3 +98,10 @@ curl -X DELETE https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/todos/<id
 
 No output
 
+
+### To run the Integration Tests using bash
+
+```bash 
+# Set the env variables and invoke `jest`
+DYNAMODB_TABLE=todos-table IS_OFFLINE=true ./node_modules/.bin/jest
+```

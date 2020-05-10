@@ -5,6 +5,14 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "-": "0.0.1",
+    "serverless-dynamodb-local": "^0.2.39",
+    "supertest": "^4.0.2",
     "uuid": "^2.0.3"
+  },
+  "devDependencies": {
+    "aws-sdk": "^2.665.0",
+    "jest": "^26.0.1",
+    "serverless-offline": "^6.1.4"
   }
 }
