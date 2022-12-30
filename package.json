@@ -6,7 +6,7 @@
   "license": "MIT",
   "dependencies": {
     "-": "0.0.1",
-    "serverless-dynamodb-local": "^0.2.39",
+    "serverless-dynamodb-local": "^1.0.2",
     "supertest": "^4.0.2",
     "uuid": "^2.0.3"
   },
